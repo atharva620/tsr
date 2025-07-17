@@ -1,14 +1,14 @@
 import numpy
 import warnings
-from tsrlibrary import TSRFactory
-from tsr import TSR, TSRChain
+from tsr.tsrlibrary import TSRFactory
+from tsr.tsr import TSR, TSRChain
 
 
-def cylinder_grasp(robot, obj, obj_radius, obj_height,
-                   lateral_offset = 0.0, 
-                   vertical_tolerance = 0.02,
-                   yaw_range = None,
-                   manip_idx = None, **kwargs):
+def cylinder_grasp(robot, object_pos: numpy.ndarray, obj_radius: float, obj_height: float,
+                   lateral_offset: float = 0.0,
+                   vertical_tolerance: float = 0.02,
+                   yaw_range: list = None,
+                   manip_idx: int = None, **kwargs):
     """
     Generate a list of TSRChain objects. Sampling from any of these
     TSRChains will give an end-effector pose that achieves a grasp on a cylinder.
@@ -46,7 +46,8 @@ def cylinder_grasp(robot, obj, obj_radius, obj_height,
                         'than or equal to the second (current values [%f, %f])' 
                         % (yaw_range[0], yaw_range[1]))
 
-    T0_w = obj.GetTransform()
+    T0_w = numpy.eye(4)
+    T0_w[:3, 3] = object_pos
     total_offset = lateral_offset + obj_radius
 
     # First hand orientation

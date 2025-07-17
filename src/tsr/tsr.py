@@ -28,7 +28,9 @@
 
 import numpy
 import numpy.random
-import util
+        
+from tsr.util import wrap_to_interval
+
 from numpy import pi
 
 NANBW = numpy.ones(6)*float('nan')
@@ -61,7 +63,6 @@ class TSR(object):
         Bw_interval = Bw_cont[3:6, 1] - Bw_cont[3:6, 0]
         Bw_interval = numpy.minimum(Bw_interval, 2*pi)
 
-        from util import wrap_to_interval
         Bw_cont[3:6, 0] = wrap_to_interval(Bw_cont[3:6, 0])
         Bw_cont[3:6, 1] = Bw_cont[3:6, 0] + Bw_interval
 
