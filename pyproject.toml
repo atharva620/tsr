@@ -1,0 +1,23 @@
+[project]
+name = "tsr"
+version = "0.0.1"
+authors = [
+  { name="Atharva Pradhan", email="atharva607@gmail.com" },
+]
+description = "Python interfaces necessary to specify Task Space Regions (TSRs)."
+readme = "README.md"
+dependencies = [
+  "numpy",
+  "scipy",
+]
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/pypa/sampleproject"
+Issues = "https://github.com/pypa/sampleproject/issues"
