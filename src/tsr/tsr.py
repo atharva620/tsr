@@ -30,7 +30,7 @@ import numpy
 import numpy.random
         
 from tsr.util import wrap_to_interval
-
+from functools import reduce
 from numpy import pi
 
 NANBW = numpy.ones(6)*float('nan')
@@ -180,7 +180,7 @@ class TSR(object):
         @return check a (3,) vector of True if within and False if outside
         """
         # Unwrap rpy to Bw_cont.
-        from util import wrap_to_interval
+        from tsr.util import wrap_to_interval
         rpy = wrap_to_interval(rpy, lower=Bw[:, 0])
 
         # Check bounds condition on RPY component.
@@ -379,7 +379,7 @@ class TSR(object):
                                 if numpy.isnan(x) else x
                                 for i, x in enumerate(xyzrpy)])
         # Unwrap rpy to [-pi, pi]
-        from util import wrap_to_interval
+        from tsr.util import wrap_to_interval
         Bw_sample[3:6] = wrap_to_interval(Bw_sample[3:6])
         return Bw_sample
 
