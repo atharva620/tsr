@@ -51,9 +51,9 @@ def cylinder_grasp(robot, object_pos: numpy.ndarray, obj_radius: float, obj_heig
     total_offset = lateral_offset + obj_radius
 
     # First hand orientation
-    Tw_e_1 = numpy.array([[ 0., 0., 1., -total_offset], 
+    Tw_e_1 = numpy.array([[ 0., 0., -1., total_offset], 
                         [1., 0., 0., 0.], 
-                        [0., 1., 0., obj_height*0.5], 
+                        [0., 1., 0., 0.], 
                         [0., 0., 0., 1.]])
 
     Bw = numpy.zeros((6,2))
@@ -70,9 +70,8 @@ def cylinder_grasp(robot, object_pos: numpy.ndarray, obj_radius: float, obj_heig
     # Flipped hand orientation
     Tw_e_2 = numpy.array([[ 0., 0., 1., -total_offset], 
                           [-1., 0., 0., 0.], 
-                          [0.,-1., 0., obj_height*0.5], 
+                          [0.,-1., 0., 0.], 
                           [0., 0., 0., 1.]])
-
 
     grasp_tsr2 = TSR(T0_w = T0_w, Tw_e = Tw_e_2, Bw = Bw, manipindex = manip_idx)
     grasp_chain2 = TSRChain(sample_start=False, sample_goal = True, 
